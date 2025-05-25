@@ -1,0 +1,15 @@
+server:
+  servlet:
+    context-path: /api
+spring:
+  application:
+    name: decision-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/evidentor
+    driverClassName: org.postgresql.Driver
+    username: postgres
+    password: postgres
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true

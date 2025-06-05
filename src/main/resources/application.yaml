@@ -1,4 +1,5 @@
 server:
+  port: 8082
   servlet:
     context-path: /api
 spring:
@@ -9,7 +10,13 @@ spring:
     driverClassName: org.postgresql.Driver
     username: postgres
     password: postgres
+  grpc:
+    server:
+      port: 9092
+      reflection:
+        enabled: true
   jpa:
     hibernate:
       ddl-auto: none
     show-sql: true
+debug: false

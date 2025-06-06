@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:camunda="http://camunda.org/schema/1.0/dmn" id="Definitions_1xe4kv1" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.35.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.23.0">
+  <decision id="Decision_1lgk6e3" name="CheckAccessDecision">
+    <decisionTable id="DecisionTable_1s8rvzv">
+      <input id="Input_1" label="userExists" camunda:inputVariable="userExists">
+        <inputExpression id="InputExpression_1" typeRef="boolean" expressionLanguage="feel">
+          <text>userExists</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_1b5psy5" label="hasRoomAccess" camunda:inputVariable="hasRoomAccess">
+        <inputExpression id="LiteralExpression_0cebyl3" typeRef="boolean" expressionLanguage="feel">
+          <text>hasRoomAccess</text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" label="accessGranted" name="accessGranted" typeRef="boolean" />
+      <rule id="DecisionRule_0zap8tw">
+        <inputEntry id="UnaryTests_1dr2obs">
+          <text>false</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1yyt9hf">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0l8ua1y">
+          <text>false</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0plsmpe">
+        <inputEntry id="UnaryTests_1whw7o2">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_18qa9wz">
+          <text>false</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_137z6ls">
+          <text>false</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1u615f7">
+        <inputEntry id="UnaryTests_0m6a2mp">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_05y3giu">
+          <text>true</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_01tyywa">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="Decision_1lgk6e3">
+        <dc:Bounds height="80" width="180" x="550" y="280" />
+      </dmndi:DMNShape>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>

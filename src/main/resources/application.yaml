@@ -1,3 +1,8 @@
+dmn:
+  decision:
+    room-access:
+      id: Decision_1lgk6e3
+      name: RoomAccessDecision.dmn
 server:
   port: 8082
   servlet:

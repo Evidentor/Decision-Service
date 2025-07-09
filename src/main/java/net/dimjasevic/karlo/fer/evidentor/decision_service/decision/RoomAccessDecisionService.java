@@ -33,7 +33,7 @@ public class RoomAccessDecisionService extends DecisionServiceGrpc.DecisionServi
 
         // Check database - TODO: Call database
         boolean userExists = true;
-        boolean hasRoomAccess = true;
+        boolean hasRoomAccess = request.getCardId().equals("2A3A06B0");
 
         // Prepare camunda input parameters
         // TODO: Extract this into a separate class, since this is gRPC service
@@ -48,6 +48,7 @@ public class RoomAccessDecisionService extends DecisionServiceGrpc.DecisionServi
         );
         DmnDecisionTableResult result = dmnEngine.evaluateDecisionTable(decision, variables);
         boolean accessGranted = result.getSingleResult().getSingleEntry();
+        LOGGER.info("Access granted: {}", accessGranted);
 
         // Send the response
         CheckAccessResponse response = CheckAccessResponse.newBuilder().setAccessGranted(accessGranted).build();

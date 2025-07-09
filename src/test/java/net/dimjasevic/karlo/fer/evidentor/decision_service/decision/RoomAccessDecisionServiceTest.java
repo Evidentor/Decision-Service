@@ -64,7 +64,7 @@ class RoomAccessDecisionServiceTest {
         assertTrue(responseObserverCompleted);
         assertFalse(responseObserverError);
         assertEquals(1, responseObserverResponses.size());
-        assertTrue(responseObserverResponses.get(0).getAccessGranted());
+        assertFalse(responseObserverResponses.get(0).getAccessGranted());
         assertFalse(responseObserverResponses.get(0).hasReason());
     }
 }

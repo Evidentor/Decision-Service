@@ -39,7 +39,7 @@ public class RoomAccessDecisionService extends DecisionServiceGrpc.DecisionServi
         );
 
         // Check database - TODO: Call users service
-        Optional<User> user = userRepository.findById(request.getDeviceId());
+        Optional<User> user = userRepository.findByCardId(request.getCardId());
         boolean userExists = user.isPresent();
         boolean hasRoomAccess = userExists && !userRestrictedRoomAccessRepository.existsById(
                 new UserRestrictedRoomAccessId(user.get().getId(), request.getRoomId())

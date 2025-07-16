@@ -11,7 +11,7 @@
 	<properties>
 		<java.version>21</java.version>
 		<spring-boot.version>3.4.5</spring-boot.version>
-		<domain.version>0.0.3-SNAPSHOT</domain.version>
+		<domain.version>0.0.4-SNAPSHOT</domain.version>
 		<camunda-engine.version>7.23.0</camunda-engine.version>
 		<lombok.version>1.18.38</lombok.version>
 	</properties>

@@ -6,6 +6,10 @@ import net.dimjasevic.karlo.fer.evidentor.decision_service.dmn.DmnConfiguration;
 import net.dimjasevic.karlo.fer.evidentor.domain.proto.CheckAccessRequest;
 import net.dimjasevic.karlo.fer.evidentor.domain.proto.CheckAccessResponse;
 import net.dimjasevic.karlo.fer.evidentor.domain.proto.DecisionServiceGrpc;
+import net.dimjasevic.karlo.fer.evidentor.domain.userrestrictedroomaccess.UserRestrictedRoomAccessId;
+import net.dimjasevic.karlo.fer.evidentor.domain.userrestrictedroomaccess.UserRestrictedRoomAccessRepository;
+import net.dimjasevic.karlo.fer.evidentor.domain.users.User;
+import net.dimjasevic.karlo.fer.evidentor.domain.users.UserRepository;
 import org.camunda.bpm.dmn.engine.DmnDecision;
 import org.camunda.bpm.dmn.engine.DmnDecisionTableResult;
 import org.camunda.bpm.dmn.engine.DmnEngine;
@@ -15,6 +19,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 @AllArgsConstructor
 @Service
@@ -23,6 +28,8 @@ public class RoomAccessDecisionService extends DecisionServiceGrpc.DecisionServi
 
     private DmnEngine dmnEngine;
     private DmnConfiguration dmnConfiguration;
+    private final UserRepository userRepository;
+    private final UserRestrictedRoomAccessRepository userRestrictedRoomAccessRepository;
 
     @Override
     public void checkAccess(CheckAccessRequest request, StreamObserver<CheckAccessResponse> responseObserver) {
@@ -31,9 +38,12 @@ public class RoomAccessDecisionService extends DecisionServiceGrpc.DecisionServi
                 request.getDeviceId(), request.getCardId(), request.getRoomId()
         );
 
-        // Check database - TODO: Call database
-        boolean userExists = true;
-        boolean hasRoomAccess = request.getCardId().equals("2A3A06B0");
+        // Check database - TODO: Call users service
+        Optional<User> user = userRepository.findByCardId(request.getCardId());
+        boolean userExists = user.isPresent();
+        boolean hasRoomAccess = userExists && !userRestrictedRoomAccessRepository.existsById(
+                new UserRestrictedRoomAccessId(user.get().getId(), request.getRoomId())
+        );
 
         // Prepare camunda input parameters
         // TODO: Extract this into a separate class, since this is gRPC service

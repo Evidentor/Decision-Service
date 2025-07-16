@@ -7,7 +7,7 @@ RUN mvn install:install-file \
     -Dfile=libs/domain.jar \
     -DgroupId=net.dimjasevic.karlo.fer.evidentor \
     -DartifactId=domain \
-    -Dversion=0.0.3-SNAPSHOT \
+    -Dversion=0.0.4-SNAPSHOT \
     -Dpackaging=jar
 
 RUN mvn clean package -DskipTests
